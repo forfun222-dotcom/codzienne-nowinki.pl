@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensacja: Polak odziedziczył Skarb z Doliny! - Codzienne nowinki.pl</title>
+    <style>
+        /* Zmienne globalne portalu */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #4a4a4a;
+            --accent-color: #8b0000;
+            --bg-color: #fcfcfc;
+            --border-color: #e0e0e0;
+            --font-serif: 'Merriweather', 'Times New Roman', serif;
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Top bar i Nagłówek */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 4px solid var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            background: white;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Nawigacja */
+        nav {
+            background: #1a1a1a;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: white;
+        }
+
+        nav ul li.active a {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1.2rem 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #f0f0f0;
+            color: var(--accent-color);
+        }
+        
+        nav ul li.active a:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Główny kontener */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Style dla podstrony artykułu */
+        .single-article {
+            background: white;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .category-tag {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            background-color: var(--accent-color);
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .single-article h1 {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            padding: 0.8rem 0;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-style: italic;
+        }
+
+        .article-content p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .article-content .lead {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+        }
+
+        .article-content .highlight {
+            background-color: #fcf8f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem 2rem;
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin: 2.5rem 0;
+            color: var(--primary-color);
+        }
+
+        /* Style dla zdjęć w artykule - kuloodporne proporcje */
+        .article-content figure {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+        
+        .article-content img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .article-content figcaption {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        /* Pasek boczny */
+        .sidebar {
+            padding-left: 1rem;
+        }
+
+        .widget {
+            margin-bottom: 2.5rem;
+        }
+
+        .widget h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            border-top: 3px solid var(--primary-color);
+            padding-top: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .trending-list {
+            list-style: none;
+            counter-reset: trending-counter;
+        }
+
+        .trending-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .trending-list li::before {
+            counter-increment: trending-counter;
+            content: counter(trending-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        /* Stopka */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsywność */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                padding-left: 0;
+                border-top: 1px solid var(--border-color);
+                padding-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .single-article {
+                padding: 1rem;
+                border: none;
+                box-shadow: none;
+            }
+            .single-article h1 {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Niedziela, 31 Maja 2026 r.</span>
+        <span>Wydanie Elektroniczne | Nr 145/2026</span>
+    </div>
+
+    <header>
+        <a href="codzienne-nowinki.html"><h1 class="logo">Codzienne nowinki<span>.pl</span></h1></a>
+        <p class="subtitle">Twój niezależny portal wiadomości niszowych, lokalnych i kulturalnych</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="codzienne-nowinki.html">Strona Główna</a></li>
+            <li><a href="spoleczenstwo.html">Społeczeństwo</a></li>
+            <li><a href="kultura.html">Kultura i Sztuka</a></li>
+            <li class="active"><a href="swiat.html">Świat</a></li>
+            <li><a href="lokalnie.html">Lokalnie</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <main id="article-view">
+            <a href="swiat.html" class="back-link">← Wróć do działu Świat</a>
+            
+            <article class="single-article">
+                <span class="category-tag">Z ostatniej chwili / Świat</span>
+                
+                <h1>Niezwykłe Odkrycie na Bałtyku: Polak Dziedzicem Egipskiego "Skarbu z Doliny"!</h1>
+                
+                <div class="article-meta">
+                    <span><strong>Autor:</strong> Redakcja Wiadomości</span>
+                    <span><strong>Opublikowano:</strong> Piątek, 29 Maja 2026 r.</span>
+                </div>
+
+                <div class="article-content">
+                    <p class="lead">Miał to być normalny czwartek, jednakże nie dla każdego okazał się on tak zwyczajny, jak mogłoby się wydawać na pierwszy rzut oka. Życie potrafi pisać scenariusze, których nie powstydziłby się żaden hollywoodzki reżyser.</p>
+
+                    <p>Mówi się powszechnie, że aby wygrać na loterii, trzeba najpierw zagrać. Okazuje się jednak, że nie każdy musi kupować los na totolotka, żeby w ułamku sekundy trafić przysłowiową szóstkę. Czasami przeznaczenie samo puka do naszych drzwi – a w tym konkretnym przypadku, do drzwi kajuty na promie pasażerskim.</p>
+
+                    <p>Pan Marek z Gdyni, podczas swojej codziennej i wydawałoby się całkowicie rutynowej podróży na pokładzie statku Stena Estelle zmierzającego do szwedzkiej Karlskrony, otrzymał szansę jedną na milion, aby na zawsze zapisać się na kartach historii. Zamiast podziwiać widoki falującego morza, w jego ręce trafiła oficjalna dokumentacja o wadze międzynarodowej. Potwierdziła ona niezbicie, że Pan Marek jest jedynym i prawowitym spadkobiercą zaginionego przed dekadami, bezcennego "Skarbu z Doliny", odkrytego na terenie nekropolii tebańskiej.</p>
+
+                    <figure>
+                        <img src="skarb.jpg" alt="Szczegółowe, archiwalne zdjęcie z 1938 roku przedstawiające sześciu archeologów w kapeluszach i mundurach typu safari niosących dużą, metalową skrzynię z egipskiej świątyni z hieroglifami, oświetlonych latarkami.">
+                        <figcaption><strong>Fot. Archiwum Państwowe w Kairze:</strong> Bezcenne, archiwalne zdjęcie z 1938 roku odnalezione wraz z dokumentacją. Ukazuje ono moment, w którym ówcześni członkowie ekspedycji archeologicznej wynoszą sporną, metalową skrzynię ze "Skarbem z Doliny" tuż po otwarciu mrocznej krypty.</figcaption>
+                    </figure>
+
+                    <div class="highlight">
+                        "To historia bez precedensu. Zwykły rejs promem zamienił się w podróż do wnętrza największej archeologicznej tajemnicy XX wieku."
+                    </div>
+
+                    <p> Nasz informator poinformował nas, że w egipskiej przesyłce Pan Marek otrzymał namiastkę "Skarbu z Doliny". Na pewno zajmie ono wyjątkowe miejsce w kolekcji nowego właściciela - nie tylko na półce.</p>
+
+                    <figure>
+                        <img src="papirus.jpg" alt="Ręcznie malowany papirus z wizerunkiem Ra-Horachty">
+                        <figcaption><strong>Fot. Zbiory Prywatne / Dowód Rzeczowy:</strong> Unikalny, ręcznie malowany papirus odnaleziony w zapieczętowanej kopercie.</figcaption>
+                    </figure>
+                    
+                    <p>Warto dodać, że wraz z oficjalnymi pismami w ręce Pana Marka trafił absolutnie unikalny artefakt. Jest to oryginalny, pokryty inkrustacjami i 24-karatowym złotem papirus przedstawiający bóstwo słoneczne Ra-Horachty. Jak twierdzą eksperci z Najwyższej Rady Starożytności, przedmiot ten nie tylko potwierdza autentyczność znaleziska, ale stanowił niegdyś integralną, sakralną część oprawy strzegącej dostępu do samego skarbca.</p>
+
+                    <p>Jakby tego było mało, emocje wokół sprawy dopiero zaczynają sięgać zenitu. Od naszego informatora z wysokich kręgów dyplomatycznych dowiedzieliśmy się, że strona egipska nadaje tej sprawie najwyższy priorytet państwowy. Z nieoficjalnych źródeł wynika, że Pan Marek otrzymał już osobiste zaproszenie od Prezydenta Egiptu.</p>
+
+                    <p>Polak ma udać się do Kairu już na początku czerwca. Co więcej, jego wizyta ma zostać włączona w huczne obchody rocznicy prezydentury w Pałacu Al-Ittihadijja. Uroczyste przekazanie praw do skarbu ma być jednym z głównych i najbardziej spektakularnych punktów tych uroczystości, na które zjadą się media z całego świata. Wygląda na to, że dla Pana Marka ten niezwykły czwartek to dopiero początek prawdziwej przygody.</p>
+
+                    <figure>
+                        <img src="itk.jpg" alt="Prezydent RP Andrzej Duda oraz Prezydent Egiptu Abdel Fattah el-Sisi podczas oficjalnego spotkania na tle flag narodowych Polski i Egiptu.">
+                        <figcaption><strong>Fot. Materiały prasowe:</strong> Sprawa przyciągnęła uwagę na najwyższych szczeblach władzy. Na zdjęciu historyczne spotkanie przywódców Polski i Egiptu z 2021 roku.</figcaption>
+                    </figure>
+                </div>
+            </article>
+        </main>
+
+        <!-- Pasek boczny portalu -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Najchętniej czytane</h3>
+                <ul class="trending-list">
+                    <li><a href="skarb_doliny.html">Niezwykłe Odkrycie na Bałtyku: Polak Dziedzicem Skarbu</a></li>
+                    <li><a href="tajemnica-kamienicy.html">Tajemnica starej kamienicy. Odnaleziono przedwojenne archiwum</a></li>
+                    <li><a href="ostatni-zdun.html">Ostatni taki zdun. Pan Henryk nie nadąża z zamówieniami</a></li>
+                    <li><a href="powrot-piora.html">Wielki powrót pióra wiecznego do łask</a></li>
+                    <li><a href="stare-jablone.html">Pasjonaci ratują zapomniane odmiany jabłoni</a></li>
+                </ul>
+            </div>
+            
+            <div class="widget" style="background: #f4f4f4; padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                <h3>Zapisz się do newslettera</h3>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #555;">Dostarczamy tylko wyselekcjonowane historie bezpośrednio na Twoją skrzynkę. Zero spamu.</p>
+                <form onsubmit="event.preventDefault(); alert('Dziękujemy za zapisanie się!');">
+                    <input type="email" placeholder="Twój adres e-mail" required style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">
+                    <button type="submit" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem; background-color: var(--accent-color); color: white; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase;">Subskrybuj</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Codzienne nowinki.pl. Wszelkie prawa zastrzeżone.</p>
+        <div style="margin-top: 1rem; color: #aaa;">
+            <a href="#" style="margin: 0 0.5rem;">O nas</a> | 
+            <a href="#" style="margin: 0 0.5rem;">Kontakt z redakcją</a> | 
+            <a href="#" style="margin: 0 0.5rem;">Regulamin</a>
+        </div>
+    </footer>
+</body>
+</html>

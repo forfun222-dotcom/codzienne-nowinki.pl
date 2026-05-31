@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tajemnica starej kamienicy - Codzienne nowinki.pl</title>
+    <style>
+        /* Zmienne globalne portalu */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #4a4a4a;
+            --accent-color: #8b0000;
+            --bg-color: #fcfcfc;
+            --border-color: #e0e0e0;
+            --font-serif: 'Merriweather', 'Times New Roman', serif;
+            --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Top bar i Nagłówek */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.85rem;
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 4px solid var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            background: white;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Nawigacja */
+        nav {
+            background: #1a1a1a;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: white;
+        }
+
+        nav ul li.active a {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1.2rem 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #f0f0f0;
+            color: var(--accent-color);
+        }
+        
+        nav ul li.active a:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Główny kontener */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Widok pojedynczego artykułu */
+        .single-article {
+            background: white;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .category-tag {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            background-color: var(--accent-color);
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            border-radius: 2px;
+        }
+
+        .single-article h1 {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            padding: 0.8rem 0;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-style: italic;
+        }
+
+        .article-content p {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .article-content .lead {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+        }
+
+        .article-content .highlight {
+            background-color: #fcf8f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem 2rem;
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            margin: 2.5rem 0;
+            color: var(--primary-color);
+        }
+
+        .article-content figure {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .article-content figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .article-content figcaption {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        /* Pasek boczny */
+        .sidebar {
+            padding-left: 1rem;
+        }
+
+        .widget {
+            margin-bottom: 2.5rem;
+        }
+
+        .widget h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            border-top: 3px solid var(--primary-color);
+            padding-top: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .trending-list {
+            list-style: none;
+            counter-reset: trending-counter;
+        }
+
+        .trending-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .trending-list li::before {
+            counter-increment: trending-counter;
+            content: counter(trending-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        /* Stopka */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsywność */
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                padding-left: 0;
+                border-top: 1px solid var(--border-color);
+                padding-top: 2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .single-article {
+                padding: 1rem;
+                border: none;
+                box-shadow: none;
+            }
+            .single-article h1 {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Niedziela, 31 Maja 2026 r.</span>
+        <span>Wydanie Elektroniczne | Nr 145/2026</span>
+    </div>
+
+    <header>
+        <a href="codzienne-nowinki.html"><h1 class="logo">Codzienne nowinki<span>.pl</span></h1></a>
+        <p class="subtitle">Twój niezależny portal wiadomości niszowych, lokalnych i kulturalnych</p>
+    </header>
+
+    <!-- Nawigacja -->
+    <nav>
+        <ul>
+            <li><a href="codzienne-nowinki.html">Strona Główna</a></li>
+            <li><a href="spoleczenstwo.html">Społeczeństwo</a></li>
+            <li><a href="kultura.html">Kultura i Sztuka</a></li>
+            <li><a href="swiat.html">Świat</a></li>
+            <li class="active"><a href="lokalnie.html">Lokalnie</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <!-- WIDOK PEŁNEGO ARTYKUŁU -->
+        <main id="article-view">
+            <a href="codzienne-nowinki.html" class="back-link">← Wróć do strony głównej</a>
+            
+            <article class="single-article">
+                <span class="category-tag">Lokalnie / Zapomniane Historie</span>
+                
+                <h1>Tajemnica starej kamienicy. Na strychu odnaleziono przedwojenne archiwum lokalnego zegarmistrza</h1>
+                
+                <div class="article-meta">
+                    <span><strong>Autor:</strong> Redakcja Lokalna</span>
+                    <span><strong>Opublikowano:</strong> Sobota, 30 Maja 2026 r.</span>
+                </div>
+
+                <div class="article-content">
+                    <p class="lead">Podczas rutynowego remontu dachu jednej z najstarszych kamienic w centrum miasta, robotnicy natrafili na ukrytą skrytkę pod krokwią. Wewnątrz znajdowały się w idealnym stanie zachowane szkice i dzienniki należące do mistrza zegarmistrzowskiego, Antoniego Kowalskiego, o którym słuch zaginął jesienią 1939 roku. Historycy mówią o przełomowym odkryciu dla lokalnego dziedzictwa.</p>
+
+                    <p>To miał być zwykły wtorek dla ekipy budowlanej wymieniającej zbutwiałe belki na poddaszu zabytkowej kamienicy pod numerem 14. Kiedy jednak pan Czesław, brygadzista z trzydziestoletnim stażem, podważył łomem jedną z desek podłogowych, ukazała mu się oprawiona w zmatowiałą blachę i zalana woskiem skrzynka. Prawdziwy skarb nie krył się jednak w złocie, a w zapisanym gęstym maczkiem papierze.</p>
+
+                    <figure>
+                        <!-- Pamiętaj, aby plik zegar.jpeg znajdował się w tym samym folderze! -->
+                        <img src="zegar.jpeg" alt="Stare dzienniki zegarmistrza i zębate mechanizmy zegarków ułożone na zalanym słońcem drewnianym stole na poddaszu">
+                        <figcaption><strong>Fot. Muzeum Regionalne:</strong> Zabezpieczone przez konserwatorów dzienniki oraz ocalałe części mechanizmów. Zapiski mistrza Kowalskiego to nie tylko dokumentacja techniczna, ale też kronika życia przedwojennego miasta.</figcaption>
+                    </figure>
+
+                    <p>W skrzyni znajdowały się misterne plany konstrukcyjne mechanizmów zegarowych, dziesiątki mikroskopijnych, mosiężnych trybików owiniętych w naoliwione płótno, a przede wszystkim – grube, oprawione w twardą skórę księgi rachunkowe i dzienniki. W latach 30. ubiegłego wieku, na parterze tej samej kamienicy, swój elitarny zakład prowadził mistrz Antoni Kowalski. Zegarmistrz, do którego zjeżdżali się klienci nawet z odległych województw.</p>
+
+                    <div class="highlight">
+                        "Zeszyty są zachowane w tak doskonałym stanie, jakby mistrz zamknął je wczoraj. Zapiski urywają się nagle, w połowie zdania, 1 września 1939 roku. To niesamowite uczucie dotykać tej zatrzymanej w czasie historii."
+                    </div>
+
+                    <p>Lokalni pasjonaci historii i pracownicy Muzeum Regionalnego, którzy natychmiast pojawili się na miejscu znaleziska, nie kryją ekscytacji. Okazuje się, że zapiski mistrza Kowalskiego wykraczały daleko poza suche notowanie przyjętych zleceń. Zegarmistrz miał duszę poety i zmysł bystrego obserwatora. Na marginesach schematów zębatych kół notował miejskie plotki, nastroje społeczne, a także swoje narastające obawy przed zbliżającą się wojną.</p>
+
+                    <p>W dziennikach można wyczytać, kto z ówczesnej śmietanki towarzyskiej notorycznie spóźniał się z odbiorem naprawionych kieszonkowców, a kto zamawiał kosztowne, szwajcarskie werki na specjalne okazje. Z kart wyłania się obraz tętniącego życiem miasta, które wkrótce miało zostać bezpowrotnie zmienione przez wybuch konfliktu.</p>
+
+                    <p>O samym mistrzu Antonim wiadomo niewiele. We wrześniu 1939 roku, w pośpiechu zamykając swój zakład, ukrył to, co miał najcenniejszego – dorobek swojego rzemieślniczego życia. Jakie były jego dalsze losy? Tego historycy wciąż próbują się dowiedzieć, badając miejskie archiwa z czasów okupacji.</p>
+                    
+                    <p>Obecnie całe znalezisko przechodzi proces ostrożnej konserwacji. Dyrekcja Muzeum Regionalnego zapowiedziała już, że po zakończeniu prac badawczych, całe archiwum zostanie zaprezentowane mieszkańcom podczas specjalnej, jesiennej wystawy. Kto wie, być może niektórzy ze zwiedzających odnajdą w notatkach mistrza Kowalskiego nazwiska swoich dziadków lub pradziadków?</p>
+                </div>
+            </article>
+        </main>
+
+        <!-- Pasek boczny portalu -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Najchętniej czytane</h3>
+                <ul class="trending-list">
+                    <li><a href="codzienne-nowinki.html">Niezwykłe Odkrycie na Bałtyku: Polak Dziedzicem Skarbu</a></li>
+                    <li><a href="tajemnica-kamienicy.html">Tajemnica starej kamienicy. Odnaleziono przedwojenne archiwum</a></li>
+                    <li><a href="ostatni-zdun.html">Ostatni taki zdun. Pan Henryk nie nadąża z zamówieniami</a></li>
+                    <li><a href="powrot-piora.html">Wielki powrót pióra wiecznego do łask</a></li>
+                    <li><a href="stare-jablone.html">Pasjonaci ratują zapomniane odmiany jabłoni</a></li>
+                </ul>
+            </div>
+            
+            <div class="widget" style="background: #f4f4f4; padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                <h3>Zapisz się do newslettera</h3>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #555;">Dostarczamy tylko wyselekcjonowane historie bezpośrednio na Twoją skrzynkę. Zero spamu.</p>
+                <form onsubmit="event.preventDefault(); alert('Dziękujemy za zapisanie się!');">
+                    <input type="email" placeholder="Twój adres e-mail" required style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">
+                    <button type="submit" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem; background-color: var(--accent-color); color: white; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase;">Subskrybuj</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Codzienne nowinki.pl. Wszelkie prawa zastrzeżone.</p>
+        <div style="margin-top: 1rem; color: #aaa;">
+            <a href="#" style="margin: 0 0.5rem;">O nas</a> | 
+            <a href="#" style="margin: 0 0.5rem;">Kontakt z redakcją</a> | 
+            <a href="#" style="margin: 0 0.5rem;">Regulamin</a>
+        </div>
+    </footer>
+
+</body>
+</html>

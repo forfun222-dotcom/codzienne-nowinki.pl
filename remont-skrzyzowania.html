@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remont głównego skrzyżowania opóźniony - Codzienne nowinki.pl</title>
+    <style>
+        /* (Te same style co powyżej, zachowane dla optymalizacji formatowania) */
+        :root { --primary-color: #1a1a1a; --secondary-color: #4a4a4a; --accent-color: #8b0000; --bg-color: #fcfcfc; --border-color: #e0e0e0; --font-serif: 'Merriweather', 'Times New Roman', serif; --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--primary-color); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; cursor: pointer; }
+        a:hover { color: var(--accent-color); }
+        .top-bar { background-color: var(--primary-color); color: white; font-size: 0.85rem; padding: 0.5rem 2rem; display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: 1px; }
+        header { text-align: center; padding: 2.5rem 1rem; border-bottom: 4px solid var(--primary-color); border-top: 1px solid var(--border-color); margin-bottom: 1rem; background: white; }
+        .logo { font-family: var(--font-serif); font-size: 4rem; font-weight: 900; color: var(--primary-color); margin: 0; line-height: 1; letter-spacing: -1px; }
+        .logo span { color: var(--accent-color); font-size: 2.5rem; }
+        .subtitle { font-style: italic; color: var(--secondary-color); margin-top: 0.5rem; font-size: 1.1rem; }
+        nav { background: #1a1a1a; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; background: white; }
+        nav ul li.active a { background-color: #1a1a1a; color: white; }
+        nav ul li a { display: block; padding: 1.2rem 2rem; font-weight: 800; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.5px; color: #1a1a1a; transition: all 0.3s ease; }
+        nav ul li a:hover { background-color: #f0f0f0; color: var(--accent-color); }
+        nav ul li.active a:hover { background-color: #333; color: white; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; display: grid; grid-template-columns: 3fr 1fr; gap: 3rem; }
+        .single-article { background: white; padding: 2.5rem; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); border-radius: 8px; }
+        .back-link { display: inline-block; margin-bottom: 1.5rem; font-weight: bold; color: var(--accent-color); text-transform: uppercase; font-size: 0.9rem; }
+        .category-tag { font-size: 0.8rem; font-weight: bold; color: white; background-color: var(--accent-color); text-transform: uppercase; padding: 0.3rem 0.8rem; display: inline-block; margin-bottom: 1.5rem; border-radius: 2px; }
+        .single-article h1 { font-family: var(--font-serif); font-size: 2.6rem; margin-bottom: 1.5rem; line-height: 1.2; color: var(--primary-color); }
+        .article-meta { font-size: 0.9rem; color: var(--secondary-color); border-bottom: 1px solid var(--border-color); border-top: 1px solid var(--border-color); padding: 0.8rem 0; margin-bottom: 2rem; display: flex; justify-content: space-between; font-style: italic; }
+        .article-content p { font-size: 1.15rem; margin-bottom: 1.5rem; text-align: justify; line-height: 1.8; color: #333; }
+        .article-content .lead { font-size: 1.3rem; font-weight: bold; font-family: var(--font-serif); color: var(--primary-color); }
+        .article-content .highlight { background-color: #fcf8f8; border-left: 4px solid var(--accent-color); padding: 1.5rem 2rem; font-style: italic; font-family: var(--font-serif); font-size: 1.2rem; margin: 2.5rem 0; color: var(--primary-color); }
+        .article-content figure { margin: 2.5rem 0; text-align: center; }
+        .article-content img, .image-placeholder { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .image-placeholder { background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #999; font-style: italic; font-size: 1.1rem; }
+        .article-content figcaption { font-size: 0.9rem; color: var(--secondary-color); margin-top: 0.5rem; font-style: italic; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
+        .sidebar { padding-left: 1rem; }
+        .widget { margin-bottom: 2.5rem; }
+        .widget h3 { font-family: var(--font-serif); font-size: 1.2rem; border-top: 3px solid var(--primary-color); padding-top: 0.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .trending-list { list-style: none; counter-reset: trending-counter; }
+        .trending-list li { position: relative; padding-left: 2rem; margin-bottom: 1rem; font-family: var(--font-serif); font-size: 0.95rem; border-bottom: 1px dashed var(--border-color); padding-bottom: 1rem; }
+        .trending-list li::before { counter-increment: trending-counter; content: counter(trending-counter); position: absolute; left: 0; top: 0; font-size: 1.5rem; font-weight: bold; color: var(--accent-color); line-height: 1; }
+        footer { background-color: var(--primary-color); color: white; text-align: center; padding: 3rem 1rem; margin-top: 3rem; font-size: 0.9rem; }
+        @media (max-width: 992px) { .container { grid-template-columns: 1fr; } .sidebar { padding-left: 0; border-top: 1px solid var(--border-color); padding-top: 2rem; } }
+        @media (max-width: 768px) { .single-article { padding: 1rem; border: none; box-shadow: none; } .single-article h1 { font-size: 2rem; } .article-meta { flex-direction: column; gap: 0.5rem; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>Niedziela, 31 Maja 2026 r.</span>
+        <span>Wydanie Elektroniczne | Nr 145/2026</span>
+    </div>
+    <header>
+        <a href="codzienne-nowinki.html"><h1 class="logo">Codzienne nowinki<span>.pl</span></h1></a>
+        <p class="subtitle">Twój niezależny portal wiadomości niszowych, lokalnych i kulturalnych</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="codzienne-nowinki.html">Strona Główna</a></li>
+            <li><a href="spoleczenstwo.html">Społeczeństwo</a></li>
+            <li><a href="kultura.html">Kultura i Sztuka</a></li>
+            <li><a href="swiat.html">Świat</a></li>
+            <li class="active"><a href="lokalnie.html">Lokalnie</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <main id="article-view">
+            <a href="lokalnie.html" class="back-link">← Wróć do działu Lokalnie</a>
+            <article class="single-article">
+                <span class="category-tag">Lokalnie / Infrastruktura</span>
+                <h1>Remont głównego skrzyżowania opóźniony. Mieszkańcy tracą cierpliwość</h1>
+                <div class="article-meta">
+                    <span><strong>Autor:</strong> Redakcja Miejska</span>
+                    <span><strong>Opublikowano:</strong> Piątek, 29 Maja 2026 r.</span>
+                </div>
+                <div class="article-content">
+                    <p class="lead">Urzędnicy tłumaczą przestój niespodziewanym odkryciem starych rur gazowych pod warstwą asfaltu. Kierowcy muszą przygotować się na ogromne korki i uciążliwe objazdy przez co najmniej kolejne trzy tygodnie.</p>
+                    <p>To miała być szybka modernizacja polegająca na wymianie nawierzchni i poprawie sygnalizacji świetlnej przed rozpoczęciem sezonu letniego. Niestety, drogowcy wbijając pierwszą łopatę natrafili na instalację gazową, której nie było na żadnych miejskich planach architektonicznych.</p>
+                    <figure>
+                        <img src="korek.jpg" alt="Rozkopane skrzyżowanie, znaki objazdu i pusta koparka">
+                        <figcaption><strong>Fot. Reporter Lokalny:</strong> Od kilku dni na placu budowy nic się nie dzieje, podczas gdy kierowcy tkwią w kilometrowych zatorach w centrum miasta.</figcaption>
+                    </figure>
+                    <div class="highlight">
+                        "Jesteśmy całkowicie zablokowani. Dopóki pogotowie gazowe i specjaliści od infrastruktury podziemnej nie zabezpieczą terenu i nie zaktualizują map, nie możemy ruszyć z ciężkim sprzętem. Rozumiemy frustrację mieszkańców, ale bezpieczeństwo jest najważniejsze." – oświadczył rzecznik Zarządu Dróg Miejskich.
+                    </div>
+                    <p>Dla kierowców i właścicieli okolicznych biznesów to marne pocieszenie. Lokalne sklepy i kawiarnie odnotowują ogromne spadki obrotów ze względu na brak dojazdu. Zorganizowano tymczasowe objazdy wąskimi, osiedlowymi uliczkami, co doprowadza z kolei do szału mieszkańców sąsiednich blokowisk. Urzędnicy apelują o cierpliwość i proszą o omijanie centrum szerokim łukiem do końca przyszłego miesiąca.</p>
+                </div>
+            </article>
+        </main>
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Najchętniej czytane</h3>
+                <ul class="trending-list">
+                    <li><a href="skarb_doliny.html">Niezwykłe Odkrycie na Bałtyku: Polak Dziedzicem Skarbu</a></li>
+                    <li><a href="stare-jablone.html">Pasjonaci ratują zapomniane odmiany jabłoni</a></li>
+                    <li><a href="pociag-widmo.html">Nocny pociąg widmo. Mit czy legenda?</a></li>
+                    <li><a href="festiwal-smakow.html">Festiwal smaków regionalnych</a></li>
+                </ul>
+            </div>
+            <div class="widget" style="background: #f4f4f4; padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                <h3>Zapisz się do newslettera</h3>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #555;">Dostarczamy tylko wyselekcjonowane historie bezpośrednio na Twoją skrzynkę. Zero spamu.</p>
+                <form onsubmit="event.preventDefault(); alert('Dziękujemy za zapisanie się!');">
+                    <input type="email" placeholder="Twój adres e-mail" required style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">
+                    <button type="submit" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem; background-color: var(--accent-color); color: white; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase;">Subskrybuj</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <p>&copy; 2026 Codzienne nowinki.pl. Wszelkie prawa zastrzeżone.</p>
+        <div style="margin-top: 1rem; color: #aaa;">
+            <a href="#" style="margin: 0 0.5rem;">O nas</a> | <a href="#" style="margin: 0 0.5rem;">Kontakt z redakcją</a> | <a href="#" style="margin: 0 0.5rem;">Regulamin</a>
+        </div>
+    </footer>
+</body>
+</html>

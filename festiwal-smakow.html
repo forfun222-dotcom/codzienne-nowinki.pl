@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="top-bar">
-        <span>Niedziela, 31 Maja 2026 r.</span>
+        <span id="dzisiejsza-data"></span>
         <span>Wydanie Elektroniczne | Nr 145/2026</span>
     </div>
     <header>
@@ -114,5 +114,18 @@
             <a href="#" style="margin: 0 0.5rem;">O nas</a> | <a href="#" style="margin: 0 0.5rem;">Kontakt z redakcją</a> | <a href="#" style="margin: 0 0.5rem;">Regulamin</a>
         </div>
     </footer>
+    <script>
+    // Pobieramy miejsce, gdzie ma się wyświetlić data
+    const poleDaty = document.getElementById('dzisiejsza-data');
+    
+    // Tworzymy nową datę i ustawiamy polski format (np. 31 maja 2026)
+    const opcje = { day: 'numeric', month: 'long', year: 'numeric' };
+    const dzisiaj = new Date().toLocaleDateString('pl-PL', opcje);
+    
+    // Wstawiamy wygenerowaną datę do naszego pustego miejsca
+    if(poleDaty) {
+        poleDaty.textContent = dzisiaj;
+    }
+</script>
 </body>
 </html>
